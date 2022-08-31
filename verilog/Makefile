@@ -5,7 +5,7 @@ TEST_SYSTEM_FILES = $(CPU_FILES) test_system.v test_rom.v test_ram.v
 
 .PHONY: lint
 lint:
-	$(VERILATOR) -DNO_TRISTATE --lint-only --top-module test_system $(TEST_SYSTEM_FILES)
+	$(VERILATOR) --lint-only --top-module test_system $(TEST_SYSTEM_FILES)
 
 TEST_DIR = ./tests
 TEST_BIN_DIR = ./tests
@@ -31,7 +31,7 @@ $(TEST_RUNS): lint
 .PHONY: $(TEST_RUNS)
 $(TEST_RUNS): testruns/%.log: $(TEST_BIN_DIR)/%.bin $(TEST_DIR)/%.s testruns/%.hex
 	mkdir -p $(@D)
-	iverilog -DNO_TRISTATE -DROM_SIZE=$(firstword $(shell wc -l testruns/$*.hex)) tb_system.v $(TEST_SYSTEM_FILES)
+	iverilog -DROM_SIZE=$(firstword $(shell wc -l testruns/$*.hex)) tb_system.v $(TEST_SYSTEM_FILES)
 	cp $(word 3,$^) rom.hex
 	split -d -a 1 -l 256 --additional-suffix=".hex" rom.hex "rom_"
 	./a.out > $@

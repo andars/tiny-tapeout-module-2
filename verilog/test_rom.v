@@ -4,13 +4,9 @@ module test_rom(
     input clock,
     input reset,
     input halt,
-`ifndef NO_TRISTATE
-    inout [3:0] data,
-`else
     input [3:0] data_i,
     output [3:0] data_o,
     output data_en,
-`endif
     input sync,
     input cmd,
     input [3:0] in,
@@ -36,11 +32,6 @@ parameter ROM_FILE = "";
 `endif
 localparam ADDR_BITS = $clog2(`ROM_CAPACITY);
 
-
-`ifndef NO_TRISTATE
-wire [3:0] data_i;
-assign data_i = data;
-`endif
 
 reg [7:0] addr_lo;
 reg [2:0] cycle;
@@ -192,12 +183,7 @@ end
 
 wire [3:0] data_val;
 
-`ifndef NO_TRISTATE
-wire data_en;
-assign data = data_en ? data_val : 4'bz;
-`else
 assign data_o = data_val;
-`endif
 
 // write out ROM data during subcyles 3 and 4
 assign data_val = (cycle == 3'h3) ? memory_o[7:4]

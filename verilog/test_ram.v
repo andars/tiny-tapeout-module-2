@@ -4,13 +4,9 @@ module test_ram(
     input clock,
     input reset,
     input halt,
-`ifndef NO_TRISTATE
-    inout [3:0] data,
-`else
     input [3:0] data_i,
     output [3:0] data_o,
     output data_en,
-`endif
     input sync,
     input cmd_n,
     input p0,
@@ -27,11 +23,6 @@ module test_ram(
 );
 
 parameter CHIP_ID = 0;
-
-`ifndef NO_TRISTATE
-wire [3:0] data_i;
-assign data_i = data;
-`endif
 
 wire cmd;
 assign cmd = !cmd_n;
@@ -184,12 +175,7 @@ always @(posedge clock) begin
 end
 
 wire [3:0] data_val;
-`ifndef NO_TRISTATE
-wire data_en;
-assign data = data_en ? data_val : 4'bz;
-`else
 assign data_o = data_val;
-`endif
 assign data_val = ram_to_data ? memory_o
                 : status_to_data ? status[reg_addr * 4 + status_idx]
                 : 4'h0;
