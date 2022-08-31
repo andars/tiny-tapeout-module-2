@@ -62,7 +62,7 @@ wire carry_input;
 
 assign carry_input = alu_result[4];
 
-always @(posedge clock) begin
+always @(posedge clock or posedge reset) begin
     if (reset) begin
         accumulator <= 0;
         carry <= 1;
@@ -90,7 +90,7 @@ assign reg_input = (reg_input_sel == REG_IN_FROM_ACC) ? accumulator
                  : (reg_input_sel == REG_IN_FROM_DATA) ? data
                  : 4'bx;
 
-always @(posedge clock) begin
+always @(posedge clock or posedge reset) begin
     if (reset) begin
         for (i = 0; i < 8; i++) begin
            registers[i] <= 0;
