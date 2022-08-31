@@ -48,9 +48,7 @@ integer j;
 initial begin
     $dumpfile("waves.vcd");
     $dumpvars;
-    for (i = 0; i < 2; i++) begin
-        $dumpvars(0, dut.cpu.pc_stack.program_counters[i]);
-    end
+    $dumpvars(0, dut.cpu.pc_stack.program_counter);
 
     for (i = 0; i < 8; i++) begin
         $dumpvars(0, dut.cpu.datapath.registers[i]);
@@ -68,7 +66,7 @@ initial begin
     reset = 0;
 
     i = 0;
-    while ((dut.cpu.pc_stack.program_counters[dut.cpu.pc_stack.index] < `ROM_SIZE)) begin
+    while ((dut.cpu.pc_stack.program_counter < `ROM_SIZE)) begin
         repeat(8) @(posedge clock);
         i++;
     end
@@ -81,11 +79,7 @@ initial begin
                  2*i+1, dut.cpu.datapath.registers[2*i + 1]);
     end
     $display(" carry: %0d", dut.cpu.datapath.carry);
-    $display(" pc: 0x%0x", dut.cpu.pc_stack.program_counters[0]);
-    $display(" stack pointer: 0x%0x", dut.cpu.pc_stack.index);
-    for (i = 0; i < 4; i++) begin
-        $display(" stack %1d: 0x%0x", i, dut.cpu.pc_stack.program_counters[i]);
-    end
+    $display(" pc: 0x%0x", dut.cpu.pc_stack.program_counter);
     $display(" rom 0 port: 0x%1x", dut.rom_1.output_port);
     $display(" rom 1 port: 0x%1x", dut.rom_2.output_port);
     for (i = 0; i < 4; i++) begin
