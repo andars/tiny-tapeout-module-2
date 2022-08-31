@@ -17,8 +17,8 @@ module pc_stack_PROJECT_ID(
 
 `include "pc_stack.vh"
 
-reg [7:0] program_counters[3:0];
-reg [1:0] index;
+reg [7:0] program_counters[1:0];
+reg index;
 reg carry;
 
 integer i;
@@ -29,15 +29,15 @@ assign pc_next = (pc_next_sel == PC_FROM_DATA) ? data
                : (pc_next_sel == PC_FROM_INST) ? inst_operand
                : 4'bx;
 
-wire [1:0] index_next;
+wire index_next;
 assign index_next = (control == PC_STACK_NOP) ? index
                   : (control == PC_STACK_PUSH) ? index + 1
                   : (control == PC_STACK_POP) ? index - 1
-                  : 2'bx;
+                  : 1'bx;
 
 always @(posedge clock) begin
     if (reset) begin
-        for (i = 0; i < 4; i++) begin
+        for (i = 0; i < 2; i++) begin
             program_counters[i] <= 0;
         end
         index <= 0;
