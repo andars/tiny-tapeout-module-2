@@ -5,13 +5,11 @@ module pc_stack_PROJECT_ID(
     input reset,
     input halt,
     input [1:0] control,
-    input [11:0] target,
     input [3:0] regval,
     input [3:0] data,
     input [3:0] inst_operand,
     input [1:0] pc_next_sel,
     input [2:0] pc_write_enable,
-    output [11:0] pc,
     input [2:0] cycle, 
     output reg pc_enable,
     output reg [3:0] pc_word
@@ -19,7 +17,7 @@ module pc_stack_PROJECT_ID(
 
 `include "pc_stack.vh"
 
-reg [11:0] program_counters[3:0];
+reg [7:0] program_counters[3:0];
 reg [1:0] index;
 reg carry;
 
@@ -53,8 +51,6 @@ always @(posedge clock) begin
             {carry, program_counters[index][7:4]} <= program_counters[index][7:4] + {3'b0, carry};
         end
         else if (cycle == 3'h2) begin
-            program_counters[index][11:8] <= program_counters[index][11:8] + {3'b0, carry};
-
             // and update the slot index
             index <= index_next;
         end
@@ -65,18 +61,9 @@ always @(posedge clock) begin
             else if (pc_write_enable[1]) begin
                 program_counters[index][7:4] <= pc_next;
             end
-            else begin
-                program_counters[index][11:8] <= pc_next;
-            end
         end
         else begin
-            // store the target in the current slot
-            if (0) begin
-                program_counters[index] <= target;
-            end
-            else begin
-                program_counters[index] <= program_counters[index];
-            end
+            program_counters[index] <= program_counters[index];
         end
     end
 end
@@ -92,7 +79,7 @@ always @(*) begin
             pc_enable = 1;
         end
         3'h2: begin
-            pc_word = program_counters[index][11:8];
+            pc_word = 4'b0;
             pc_enable = 1;
         end
         default: begin

@@ -15,7 +15,6 @@ module cpu_PROJECT_ID(
 
 wire pc_enable;
 wire [3:0] pc_word;
-wire [11:0] pc;
 wire [2:0] pc_write_enable;
 wire [1:0] pc_next_sel;
 wire [1:0] pc_control;
@@ -83,14 +82,12 @@ pc_stack_PROJECT_ID pc_stack(
     .reset(reset),
     .halt(halt),
     .control(pc_control),
-    .target(12'b0),
     .regval(regval),
     .data(data_i),
     .inst_operand(inst_operand),
     .pc_next_sel(pc_next_sel),
     .pc_write_enable(pc_write_enable),
     .cycle(cycle),
-    .pc(pc),
     .pc_enable(pc_enable),
     .pc_word(pc_word)
 );
