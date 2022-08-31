@@ -22,7 +22,7 @@ module cpu_control_PROJECT_ID(
     output reg [1:0] alu_in1_sel,
     output reg [1:0] alu_cin_sel,
     output reg [1:0] pc_next_sel,
-    output reg [2:0] pc_write_enable,
+    output reg [1:0] pc_write_enable,
     output reg [1:0] pc_control,
     output reg reg_out_enable,
     output reg acc_out_enable,
@@ -137,12 +137,12 @@ always @(*) begin
                 if (take_branch) begin
                     if (cycle == 3'h3) begin
                         // write the high 4b of data into pc[7:4]
-                        pc_write_enable = 3'b010;
+                        pc_write_enable = 2'b10;
                         pc_next_sel = PC_FROM_DATA;
                     end
                     if (cycle == 3'h4) begin
                         // write the low 4b of data into pc[3:0]
-                        pc_write_enable = 3'b001;
+                        pc_write_enable = 2'b01;
                         pc_next_sel = PC_FROM_DATA;
                     end
                 end
@@ -204,18 +204,16 @@ always @(*) begin
                 // JUN: unconditional jump
                 if (cycle == 3'h3) begin
                     // write the high 4b of data into pc[7:4]
-                    pc_write_enable = 3'b010;
+                    pc_write_enable = 2'b10;
                     pc_next_sel = PC_FROM_DATA;
                 end
                 if (cycle == 3'h4) begin
                     // write the low 4b of data into pc[3:0]
-                    pc_write_enable = 3'b001;
+                    pc_write_enable = 2'b01;
                     pc_next_sel = PC_FROM_DATA;
                 end
                 if (cycle == 3'h5) begin
-                    // write inst_operand into pc[11:8]
-                    pc_write_enable = 3'b100;
-                    pc_next_sel = PC_FROM_INST;
+                    // do nothing (was: write inst_operand into pc[11:8])
                 end
             end
             4'h5: begin
@@ -225,18 +223,16 @@ always @(*) begin
                 end
                 if (cycle == 3'h3) begin
                     // write the high 4b of data into pc[7:4]
-                    pc_write_enable = 3'b010;
+                    pc_write_enable = 2'b10;
                     pc_next_sel = PC_FROM_DATA;
                 end
                 if (cycle == 3'h4) begin
                     // write the low 4b of data into pc[3:0]
-                    pc_write_enable = 3'b001;
+                    pc_write_enable = 2'b01;
                     pc_next_sel = PC_FROM_DATA;
                 end
                 if (cycle == 3'h5) begin
-                    // write inst_operand into pc[11:8]
-                    pc_write_enable = 3'b100;
-                    pc_next_sel = PC_FROM_INST;
+                    // do nothing (was: write inst_operand into pc[11:8])
                 end
             end
             4'h7: begin
@@ -244,12 +240,12 @@ always @(*) begin
                 if (!reg_is_zero) begin
                     if (cycle == 3'h3) begin
                         // write the high 4b of data into pc[7:4]
-                        pc_write_enable = 3'b010;
+                        pc_write_enable = 2'b10;
                         pc_next_sel = PC_FROM_DATA;
                     end
                     if (cycle == 3'h4) begin
                         // write the low 4b of data into pc[3:0]
-                        pc_write_enable = 3'b001;
+                        pc_write_enable = 2'b01;
                         pc_next_sel = PC_FROM_DATA;
                     end
                 end
@@ -294,14 +290,14 @@ always @(*) begin
                 if (cycle == 3'h5) begin
                     // write the 2nd register in the pair into
                     // low 4b of the PC
-                    pc_write_enable = 3'b001;
+                    pc_write_enable = 2'b01;
                     pc_next_sel = PC_FROM_REG;
                 end
                 else if (cycle == 3'h6) begin
                     // switch to the 1st register in the pair
                     // and write into the high 4b of the PC
                     inst_operand_adj = 1'b1;
-                    pc_write_enable = 3'b010;
+                    pc_write_enable = 2'b10;
                     pc_next_sel = PC_FROM_REG;
                 end
             end

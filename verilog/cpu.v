@@ -15,7 +15,7 @@ module cpu_PROJECT_ID(
 
 wire pc_enable;
 wire [3:0] pc_word;
-wire [2:0] pc_write_enable;
+wire [1:0] pc_write_enable;
 wire [1:0] pc_next_sel;
 wire [1:0] pc_control;
 

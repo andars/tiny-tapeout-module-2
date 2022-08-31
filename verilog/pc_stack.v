@@ -9,7 +9,7 @@ module pc_stack_PROJECT_ID(
     input [3:0] data,
     input [3:0] inst_operand,
     input [1:0] pc_next_sel,
-    input [2:0] pc_write_enable,
+    input [1:0] pc_write_enable,
     input [2:0] cycle, 
     output reg pc_enable,
     output reg [3:0] pc_word
@@ -25,7 +25,6 @@ integer i;
 wire [3:0] pc_next;
 assign pc_next = (pc_next_sel == PC_FROM_DATA) ? data
                : (pc_next_sel == PC_FROM_REG)  ? regval
-               : (pc_next_sel == PC_FROM_INST) ? inst_operand
                : 4'bx;
 
 always @(posedge clock) begin
@@ -42,7 +41,7 @@ always @(posedge clock) begin
         end
         else if (cycle == 3'h2) begin
         end
-        else if (pc_write_enable != 3'b0) begin
+        else if (pc_write_enable != 2'b0) begin
             if (pc_write_enable[0]) begin
                 program_counter[3:0] <= pc_next;
             end
