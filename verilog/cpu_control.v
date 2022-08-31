@@ -26,7 +26,7 @@ module cpu_control_PROJECT_ID(
     output reg [1:0] pc_control,
     output reg reg_out_enable,
     output reg acc_out_enable,
-    output [3:0] ram_cmd_out,
+    output ram_cmd_out,
     output rom_cmd_out
 );
 
@@ -49,8 +49,6 @@ assign inst_operand = inst_operand_override_en ? inst_operand_override : inst[3:
 
 reg [7:0] addr;
 
-reg [3:0] ram_cmd;
-reg [3:0] ram_cmd_next;
 reg ram_cmd_en;
 reg rom_cmd_en;
 
@@ -64,7 +62,7 @@ always @(posedge clock) begin
 end
 
 assign sync = ~(cycle == 3'b111);
-assign ram_cmd_out = ((ram_cmd_en == 1) || (cycle == 3'h2)) ? ~ram_cmd : 4'hf;
+assign ram_cmd_out = ((ram_cmd_en == 1) || (cycle == 3'h2)) ? 1'b0 : 1'b1;
 
 // pulse ROM command line low in subcycle 2
 assign rom_cmd_out = ((rom_cmd_en == 1) || (cycle == 3'h2)) ? 0: 1;
@@ -116,7 +114,6 @@ always @(*) begin
     acc_out_enable = 0;
 
     ram_cmd_en = 0;
-    ram_cmd_next = ram_cmd;
     rom_cmd_en = 0;
 
     if (two_word) begin
@@ -626,11 +623,9 @@ end
 always @(posedge clock) begin
     if (reset) begin
         two_word <= 0;
-        ram_cmd <= 4'h1;
     end
     else if (!halt) begin
         two_word <= two_word_next;
-        ram_cmd <= ram_cmd_next;
     end
 end
 endmodule

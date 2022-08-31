@@ -11,7 +11,7 @@ module test_system(
 wire [3:0] data;
 wire sync;
 wire rom_cmd;
-wire [3:0] ram_cmd_n;
+wire ram_cmd_n;
 wire [3:0] rom_3_io;
 wire [3:0] rom_4_io;
 wire [3:0] rom_5_io;
@@ -171,7 +171,7 @@ test_ram ram_1(
     .data_o(ram_1_data_o),
     .data_en(ram_1_data_en),
     .sync(sync),
-    .cmd_n(ram_cmd_n[0]),
+    .cmd_n(ram_cmd_n),
     .out(ram_out),
     .p0(1'b0),
 
@@ -193,7 +193,7 @@ test_ram ram_2(
     .data_o(ram_2_data_o),
     .data_en(ram_2_data_en),
     .sync(sync),
-    .cmd_n(ram_cmd_n[0]),
+    .cmd_n(ram_cmd_n),
     .out(ram_out),
     .p0(1'b1),
 

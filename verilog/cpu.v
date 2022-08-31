@@ -10,7 +10,7 @@ module cpu_PROJECT_ID(
     input test,
     output sync,
     output rom_cmd,
-    output [3:0] ram_cmd_n
+    output ram_cmd_n
 );
 
 wire pc_enable;

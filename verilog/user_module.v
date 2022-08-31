@@ -29,8 +29,8 @@ assign io_out[5] = sync;
 wire rom_cmd;
 assign io_out[6] = rom_cmd;
 
-wire [3:0] ram_cmd_n;
-assign io_out[7] = ram_cmd_n[0];
+wire ram_cmd_n;
+assign io_out[7] = ram_cmd_n;
 
 cpu_PROJECT_ID cpu(
     .clock(clock),
