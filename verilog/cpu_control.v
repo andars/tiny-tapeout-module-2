@@ -608,26 +608,12 @@ always @(*) begin
                 end
             end
             4'hb: begin
-                // DAA: transform accumulator for decimal addition
-                if (cycle == 3'h5) begin
-                    alu_in0_sel = ALU_IN0_ACC;
-                    alu_cin_sel = ALU_CIN_CARRY;
-                    alu_op = ALU_OP_DEC_A;
-
-                    acc_input_sel = ACC_IN_FROM_ALU;
-                    write_accumulator = 1;
-                    write_carry = 1;
-                end
+                // DAA: transform accumulator for decimal addition.
+                // Removed.
             end
             4'hc: begin
-                // KBP
-                if (cycle == 3'h5) begin
-                    alu_in0_sel = ALU_IN0_ACC;
-                    alu_op = ALU_OP_LG2_1;
-
-                    acc_input_sel = ACC_IN_FROM_ALU;
-                    write_accumulator = 1;
-                end
+                // KBP.
+                // Removed.
             end
             default: begin end
             endcase
