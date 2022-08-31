@@ -1,3 +1,5 @@
 tests/jump/jin-1.s
 tests/org/org-0.s
 tests/jms/jms-0.s
+tests/daa
+tests/kbp

@@ -49,51 +49,14 @@ assign result = (alu_op == ALU_OP_ADD)   ? (alu_in0 + alu_in1 + {4'b0, alu_cin})
               : (alu_op == ALU_OP_LG2_1) ? {1'b0, lg2_plus_1}
               : 5'bx;
 
-// decimal adjust lookup
+// decimal adjust lookup is removed
 always @(*) begin
-    if (alu_cin) begin
-        case (alu_in0)
-            4'h0: dec_adjust = {alu_cin, 4'h6};
-            4'h1: dec_adjust = {alu_cin, 4'h7};
-            4'h2: dec_adjust = {alu_cin, 4'h8};
-            4'h3: dec_adjust = {alu_cin, 4'h9};
-            4'h4: dec_adjust = {alu_cin, 4'ha};
-            4'h5: dec_adjust = {alu_cin, 4'hb};
-            4'h6: dec_adjust = {alu_cin, 4'hc};
-            4'h7: dec_adjust = {alu_cin, 4'hd};
-            4'h8: dec_adjust = {alu_cin, 4'he};
-            4'h9: dec_adjust = {alu_cin, 4'hf};
-            4'ha: dec_adjust = {1'b1,    4'h0};
-            4'hb: dec_adjust = {1'b1,    4'h1};
-            4'hc: dec_adjust = {1'b1,    4'h2};
-            4'hd: dec_adjust = {1'b1,    4'h3};
-            4'he: dec_adjust = {1'b1,    4'h4};
-            4'hf: dec_adjust = {1'b1,    4'h5};
-        endcase
-    end
-    else begin
-        case (alu_in0)
-            default: dec_adjust = {alu_cin, alu_in0};
-            4'ha: dec_adjust = {1'b1, 4'h0};
-            4'hb: dec_adjust = {1'b1, 4'h1};
-            4'hc: dec_adjust = {1'b1, 4'h2};
-            4'hd: dec_adjust = {1'b1, 4'h3};
-            4'he: dec_adjust = {1'b1, 4'h4};
-            4'hf: dec_adjust = {1'b1, 4'h5};
-        endcase
-    end
+    dec_adjust = 0;
 end
 
-// lookup for log2 + 1
+// lookup for log2 + 1 is removed
 always @(*) begin
-    case (alu_in0)
-        4'h0:    lg2_plus_1 = 4'h0;
-        4'h1:    lg2_plus_1 = 4'h1;
-        4'h2:    lg2_plus_1 = 4'h2;
-        4'h4:    lg2_plus_1 = 4'h3;
-        4'h8:    lg2_plus_1 = 4'h4;
-        default: lg2_plus_1 = 4'hf;
-    endcase
+    lg2_plus_1 = 4'h0;
 end
 
 endmodule
