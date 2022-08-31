@@ -56,7 +56,6 @@ assign acc_input = (acc_input_sel == ACC_IN_FROM_REG)    ? regval
                  : (acc_input_sel == ACC_IN_FROM_ALU)    ? alu_result[3:0]
                  : (acc_input_sel == ACC_IN_FROM_IMM)    ? inst_operand
                  : (acc_input_sel == ACC_IN_FROM_CARRY)  ? {3'b0, carry}
-                 : (acc_input_sel == ACC_IN_FROM_CARRY2) ? (carry ? 4'ha : 4'h9)
                  : 4'bx;
 
 wire carry_input;

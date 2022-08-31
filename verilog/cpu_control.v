@@ -597,12 +597,8 @@ always @(*) begin
             end
             4'h9: begin
                 // TCS: copy carry to accumulator for decimal subtraction
-                // and reset carry
-                if (cycle == 3'h5) begin
-                    acc_input_sel = ACC_IN_FROM_CARRY2;
-                    write_accumulator = 1;
-                    clear_carry = 1;
-                end
+                // and reset carry.
+                // Removed.
             end
             4'ha: begin
                 // STC: set carry

@@ -11,3 +11,4 @@ tests/ldm/ldm.1.s
 tests/ram/rdm.1.s
 tests/ram/status.1.s
 tests/jms-bbl/jms-bbl-0.s
+tests/tcs

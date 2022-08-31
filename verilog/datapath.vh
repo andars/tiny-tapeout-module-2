@@ -9,7 +9,6 @@ localparam ACC_IN_FROM_IMM    = 3'b000;
 localparam ACC_IN_FROM_REG    = 3'b001;
 localparam ACC_IN_FROM_ALU    = 3'b010;
 localparam ACC_IN_FROM_CARRY  = 3'b011;
-localparam ACC_IN_FROM_CARRY2 = 3'b100;
 localparam ACC_IN_FROM_DATA   = 3'b101;
 
 localparam ALU_OP_ADD    = 3'b000;
