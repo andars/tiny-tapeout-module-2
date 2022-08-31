@@ -1,6 +1,6 @@
 `default_nettype none
 
-module cpu(
+module cpu_PROJECT_ID(
     input clock,
     input reset,
     input halt,
@@ -57,7 +57,7 @@ wire acc_out_enable;
 // This takes precedence over pc_enable if both are set.
 wire reg_out_enable;
 
-cpu_control cpu_control(
+cpu_control_PROJECT_ID cpu_control(
     .clock(clock),
     .reset(reset),
     .halt(halt),
@@ -87,7 +87,7 @@ cpu_control cpu_control(
     .rom_cmd_out(rom_cmd)
 );
 
-pc_stack pc_stack(
+pc_stack_PROJECT_ID pc_stack(
     .clock(clock),
     .reset(reset),
     .halt(halt),
@@ -104,7 +104,7 @@ pc_stack pc_stack(
     .pc_word(pc_word)
 );
 
-datapath datapath(
+datapath_PROJECT_ID datapath(
     .clock(clock),
     .reset(reset),
     .halt(halt),

@@ -1,6 +1,6 @@
 `default_nettype none
 
-module alu(
+module alu_PROJECT_ID(
     input [3:0] regval,
     input [3:0] acc,
     input [3:0] data,

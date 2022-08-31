@@ -1,6 +1,6 @@
 `default_nettype none
 
-module pc_stack(
+module pc_stack_PROJECT_ID(
     input clock,
     input reset,
     input halt,

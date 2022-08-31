@@ -1,6 +1,6 @@
 `default_nettype none
 
-module cpu_control(
+module cpu_control_PROJECT_ID(
     input clock,
     input reset,
     input halt,

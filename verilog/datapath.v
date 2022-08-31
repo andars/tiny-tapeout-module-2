@@ -1,6 +1,6 @@
 `default_nettype none
 
-module datapath(
+module datapath_PROJECT_ID(
     input clock,
     input reset,
     input halt,
@@ -35,7 +35,7 @@ assign acc = accumulator;
 
 wire [4:0] alu_result;
 
-alu alu(
+alu_PROJECT_ID alu(
     .regval(regval),
     .acc(accumulator),
     .data(data),
