@@ -3,3 +3,10 @@ tests/org/org-0.s
 tests/jms/jms-0.s
 tests/daa
 tests/kbp
+tests/app/fib
+tests/dac/dac.1.s
+tests/fim/fim-0.s
+tests/iac/iac.1.s
+tests/ldm/ldm.1.s
+tests/ram/rdm.1.s
+tests/ram/status.1.s

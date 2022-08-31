@@ -28,9 +28,9 @@ module datapath_PROJECT_ID(
 reg [3:0] accumulator;
 reg carry;
 
-reg [3:0] registers [15:0];
+reg [3:0] registers [7:0];
 
-assign regval = registers[inst_operand];
+assign regval = registers[inst_operand[2:0]];
 assign acc = accumulator;
 
 wire [4:0] alu_result;
@@ -93,13 +93,13 @@ assign reg_input = (reg_input_sel == REG_IN_FROM_ACC) ? accumulator
 
 always @(posedge clock) begin
     if (reset) begin
-        for (i = 0; i < 16; i++) begin
+        for (i = 0; i < 8; i++) begin
            registers[i] <= 0;
         end
     end
     else if (!halt) begin
         if (write_register) begin
-            registers[inst_operand] <= reg_input;
+            registers[inst_operand[2:0]] <= reg_input;
         end
     end
 end

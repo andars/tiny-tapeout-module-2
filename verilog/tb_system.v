@@ -52,7 +52,7 @@ initial begin
         $dumpvars(0, dut.cpu.pc_stack.program_counters[i]);
     end
 
-    for (i = 0; i < 16; i++) begin
+    for (i = 0; i < 8; i++) begin
         $dumpvars(0, dut.cpu.datapath.registers[i]);
     end
 
@@ -75,7 +75,7 @@ initial begin
 
     $display("Finished.");
     $display(" accumulator: 0x%0x", dut.cpu.datapath.accumulator);
-    for (i = 0; i < 8; i++) begin
+    for (i = 0; i < 4; i++) begin
         $display(" register %2d: 0x%0x | register %2d: 0x%0x",
                  2*i, dut.cpu.datapath.registers[2*i],
                  2*i+1, dut.cpu.datapath.registers[2*i + 1]);
