@@ -27,7 +27,7 @@ assign pc_next = (pc_next_sel == PC_FROM_DATA) ? data
                : (pc_next_sel == PC_FROM_REG)  ? regval
                : 4'bx;
 
-always @(posedge clock or posedge reset) begin
+always @(posedge clock) begin
     if (reset) begin
         program_counter <= 0;
         carry <= 0;
