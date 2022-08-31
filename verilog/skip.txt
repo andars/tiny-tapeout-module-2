@@ -12,3 +12,7 @@ tests/ram/rdm.1.s
 tests/ram/status.1.s
 tests/jms-bbl/jms-bbl-0.s
 tests/tcs
+tests/fin/fin-0.s
+tests/io/rdr.1.s
+tests/jump/jin.s
+tests/ld/ld.s

@@ -28,7 +28,7 @@ module datapath_PROJECT_ID(
 reg [3:0] accumulator;
 reg carry;
 
-reg [3:0] registers [7:0];
+reg [3:0] registers [5:0];
 
 assign regval = registers[inst_operand[2:0]];
 assign acc = accumulator;

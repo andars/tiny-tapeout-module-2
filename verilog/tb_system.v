@@ -50,7 +50,7 @@ initial begin
     $dumpvars;
     $dumpvars(0, dut.cpu.pc_stack.program_counter);
 
-    for (i = 0; i < 8; i++) begin
+    for (i = 0; i < 6; i++) begin
         $dumpvars(0, dut.cpu.datapath.registers[i]);
     end
 
