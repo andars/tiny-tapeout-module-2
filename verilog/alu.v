@@ -5,7 +5,7 @@ module alu_PROJECT_ID(
     input [3:0] acc,
     input [3:0] data,
     input carry,
-    input [2:0] alu_op,
+    input [1:0] alu_op,
     input [2:0] alu_in0_sel,
     input [1:0] alu_in1_sel,
     input [1:0] alu_cin_sel,

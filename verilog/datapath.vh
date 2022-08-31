@@ -11,10 +11,10 @@ localparam ACC_IN_FROM_ALU    = 3'b010;
 localparam ACC_IN_FROM_CARRY  = 3'b011;
 localparam ACC_IN_FROM_DATA   = 3'b101;
 
-localparam ALU_OP_ADD    = 3'b000;
-localparam ALU_OP_ROL    = 3'b001;
-localparam ALU_OP_ROR    = 3'b010;
-localparam ALU_OP_PASS   = 3'b011;
+localparam ALU_OP_ADD    = 2'b00;
+localparam ALU_OP_ROL    = 2'b01;
+localparam ALU_OP_ROR    = 2'b10;
+localparam ALU_OP_PASS   = 2'b11;
 
 localparam ALU_IN0_ACC      = 3'b000;
 localparam ALU_IN0_REG      = 3'b001;

@@ -17,7 +17,7 @@ module cpu_control_PROJECT_ID(
     output reg [2:0] acc_input_sel,
     output reg write_register,
     output reg [1:0] reg_input_sel,
-    output reg [2:0] alu_op,
+    output reg [1:0] alu_op,
     output reg [2:0] alu_in0_sel,
     output reg [1:0] alu_in1_sel,
     output reg [1:0] alu_cin_sel,

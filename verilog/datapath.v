@@ -13,7 +13,7 @@ module datapath_PROJECT_ID(
     input [2:0] acc_input_sel,
     input write_register,
     input [1:0] reg_input_sel,
-    input [2:0] alu_op,
+    input [1:0] alu_op,
     input [2:0] alu_in0_sel,
     input [1:0] alu_in1_sel,
     input [1:0] alu_cin_sel,
